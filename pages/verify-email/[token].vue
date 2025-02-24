@@ -2,7 +2,7 @@
 import { ref } from "vue";
 import { useRoute } from "vue-router";
 import apiClient from "../../utils/apiClient.ts";
-import TheButton from "../../components/UI/TheButton.vue";
+import TheButton from "../../components/TheButton.vue";
 const route = useRoute();
 const token = route.params.token; // Changed from query to params
 const isVerified = ref(false);
