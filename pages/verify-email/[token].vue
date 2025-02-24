@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import { ref } from "vue";
+import { useRoute } from "vue-router";
+import apiClient from "../../utils/apiClient.ts";
 const route = useRoute();
 const token = route.params.token; // Changed from query to params
 const isVerified = ref(false);
