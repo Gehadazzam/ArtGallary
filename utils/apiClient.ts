@@ -8,9 +8,9 @@ const apiClient = axios.create({
 });
 
 apiClient.interceptors.request.use((config) => {
-  const refreshToken = sessionStorage.getItem("refreshToken");
+  const accessToken = sessionStorage.getItem("accessToken");
   if (refreshToken) {
-    config.headers.Authorization = `Bearer ${refreshToken}`;
+    config.headers.Authorization = `Bearer ${accessToken}`;
   }
   return config;
 });
