@@ -17,8 +17,14 @@ const verify = async () => {
     }
     const response = await apiClient.get("auth/verify-email?token=" + token);
     console.log(response);
-    sessionStorage.setItem("refreshToken", response.tokens.refreshToken);
-    sessionStorage.setItem("accessToken", response.tokens.accessToken);
+    sessionStorage.setItem(
+      "refreshToken",
+      response.data.data.tokens.refreshToken,
+    );
+    sessionStorage.setItem(
+      "accessToken",
+      response.data.data.tokens.accessToken,
+    );
     isVerified.value = true;
   } catch (err) {
     console.error(err);
