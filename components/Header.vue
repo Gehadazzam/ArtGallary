@@ -34,9 +34,7 @@ import apiClient from "~/utils/apiClient";
 
 const logOut = async () => {
   try {
-    const token =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI0MWUyYzgxZi1mNWIwLTRjY2EtOWM2OC05OGUzYTVlZjE0NzciLCJyb2xlIjoiVVNFUiIsImp0aSI6IjU0NDkzNDRiLWY1OGYtNDY5OS04YjM4LTRmMTM2NGVlNzYyMiIsImlhdCI6MTc0MDM0NzE0OSwiZXhwIjoyMzQ1MTQ3MTQ5fQ.DMHkNeM5JKY1DCmEdehwsU3QLBbrAnHla4YgZm6SvfM";
-
+    const token = sessionStorage.getItem("refreshToken");
     await apiClient.post("/auth/logout", {
       refreshToken: token,
     });
