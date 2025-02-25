@@ -35,9 +35,10 @@ import apiClient from "~/utils/apiClient";
 const logOut = async () => {
   try {
     const token = sessionStorage.getItem("refreshToken");
-    await apiClient.post("/auth/logout", {
-      refreshToken: token,
-    });
+    await apiClient.post(
+      "/auth/logout",
+      JSON.stringify({ refreshToken: token }),
+    );
     sessionStorage.removeItem("accessToken");
     sessionStorage.removeItem("refreshToken");
     console.log("Session Cleared");
