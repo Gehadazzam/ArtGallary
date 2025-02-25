@@ -16,8 +16,9 @@ const verify = async () => {
       return;
     }
     const response = await apiClient.get("auth/verify-email?token=" + token);
-    sessionStorage.setItem("refreshToken", response.data.refreshToken);
-    sessionStorage.setItem("accessToken", response.data.accessToken);
+    console.log(response);
+    sessionStorage.setItem("refreshToken", response.tokens.refreshToken);
+    sessionStorage.setItem("accessToken", response.tokens.accessToken);
     isVerified.value = true;
   } catch (err) {
     console.error(err);
@@ -30,7 +31,9 @@ const redirect = () => {
 };
 
 onMounted(() => {
-  verify(); // Automatically trigger verification on mount
+  setTimeout(() => {
+    verify();
+  }, 3000);
 });
 </script>
 
@@ -41,8 +44,6 @@ onMounted(() => {
     <h1 class="text-3xl text-cranberry-700 text-center font-bold">
       Welcome to Marwa Gallery
     </h1>
-
-    <!-- Success State -->
     <div v-if="isVerified" class="text-center">
       <p class="text-lg text-cranberry-700 font-bold mb-4">
         Your email has been verified 🎉
@@ -50,7 +51,6 @@ onMounted(() => {
       <TheButton @click="redirect" label="Continue to Gallery" />
     </div>
 
-    <!-- Error State -->
     <div v-else-if="error" class="text-center">
       <p class="text-lg text-red-600 font-bold mb-4">
         {{ error }}
@@ -58,7 +58,6 @@ onMounted(() => {
       <TheButton @click="redirect" label="Return to Homepage" />
     </div>
 
-    <!-- Loading State -->
     <div v-else class="text-center">
       <p class="text-lg text-gray-600 font-bold">
         Verifying your email address...
