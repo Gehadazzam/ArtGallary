@@ -1,12 +1,7 @@
 <script setup lang="ts">
-import { ref } from "vue";
-import { useRoute } from "vue-router";
-import apiClient from "../../utils/apiClient.ts";
-import TheButton from "../../components/TheButton.vue";
 const route = useRoute();
 
 const token = route.query.token;
-const isVerified = ref(false);
 const error = ref("");
 
 const verify = async () => {
@@ -24,7 +19,6 @@ const verify = async () => {
       "accessToken",
       response.data.data.tokens.accessToken,
     );
-    isVerified.value = true;
     window.location.href = "/";
   } catch (err) {
     console.error(err);
@@ -35,6 +29,9 @@ const verify = async () => {
 const redirect = () => {
   window.location.href = "/";
 };
+onMounted(() => {
+  verify();
+});
 </script>
 
 <template>
@@ -47,7 +44,7 @@ const redirect = () => {
         <TheButton @click="redirect"> Go to Home</TheButton>
       </div>
       <div v-else>
-        <NuxtImg src="~/public/images/verify-email.svg" alt="Verify Email" />
+        <NuxtImg src="~/public/images/verify.svg" alt="Verify Email" />
         <h1 class="text-3xl text-text text-center font-bold">
           Congratulations!
         </h1>
