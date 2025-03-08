@@ -68,7 +68,8 @@ const {
     font-size: 13px;
     color: var(--color-text-primary);
     border: 1px solid var(--color-border);
-    border-radius: 6px;
+    background-color: var(--color-background);
+    border-radius: calc(infinity * 1px);
     transition: border-color 0.3s ease;
 
     &:focus {
