@@ -15,6 +15,7 @@ const passwordSchema = v.pipe(
   ),
   v.maxLength(20, "Your password must have 20 characters or less."),
 );
+
 export const nameSchema = v.pipe(
   v.string(),
   v.nonEmpty("Please enter your name."),
@@ -23,12 +24,33 @@ export const nameSchema = v.pipe(
   v.regex(/^[a-zA-Z\s]*$/, "Your name must contain only letters and spaces."),
 );
 
-export const userSchema = v.object({
-  username: nameSchema,
-  email: emailSchema,
-  password: passwordSchema,
-});
+const confirmPassword = v.pipe(
+  v.string(),
+  v.nonEmpty("Please confirm your password."),
+  v.minLength(8, "Your password must have 8 characters or more."),
+  v.maxLength(20, "Your password must have 20 characters or less."),
+);
 
+export const userSchema = v.object(
+  {
+    username: nameSchema,
+    email: emailSchema,
+    password: passwordSchema,
+    confirmPassword: confirmPassword,
+  },
+  {
+    check: (input) => {
+      if (input.password !== input.confirmPassword) {
+        return [
+          {
+            message: "Passwords do not match.",
+            path: ["confirmPassword"],
+          },
+        ];
+      }
+    },
+  },
+);
 export const loginSchema = v.object({
   identifier: v.union([emailSchema, nameSchema]),
   password: passwordSchema,
