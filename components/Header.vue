@@ -1,36 +1,36 @@
 <template>
   <header
-    class="bg-cranberry-400 text-white py-2 px-4 sm:opx-8 md:px-12 lg:px-24 flex justify-between items-center"
+    class="bg-header text-white py-4 px-4 sm:opx-8 md:px-12 lg:px-24 flex justify-between items-center"
   >
     <NuxtLink to="/">
-      <img src="/public/images/logo.png" alt="Logo" class="h-12 w-12" />
+      <h2 class="text-2xl text-text-pink font-bold">Maroba</h2>
     </NuxtLink>
     <nav>
-      <ul class="flex items-center space-x-4">
-        <li>
+      <ul class="flex items-center space-x-4 lg:space-x-12">
+        <li :class="{ active: activeLink === '/' }">
           <nuxt-link to="/">Home</nuxt-link>
         </li>
-        <li>
-          <nuxt-link to="/about">About</nuxt-link>
+        <li :class="{ active: activeLink === '/story' }">
+          <nuxt-link to="/story">Story</nuxt-link>
         </li>
-        <li>
-          <nuxt-link to="/contact">Contact</nuxt-link>
+        <li :class="{ active: activeLink === '/categories' }">
+          <nuxt-link to="/categories">Categories</nuxt-link>
         </li>
-        <li>
-          <img
-            width="48"
-            height="48"
-            @click="logOut"
-            src="https://img.icons8.com/sci-fi/48/user-male-circle.png"
-            alt="user-male-circle"
-          />
+        <li :class="{ active: activeLink === '/all_art' }">
+          <nuxt-link to="/all_art">All Art</nuxt-link>
         </li>
       </ul>
     </nav>
+    <NuxtLink to="/join_us">
+      <TheButton>Login</TheButton>
+    </NuxtLink>
   </header>
 </template>
 <script setup lang="ts">
 import apiClient from "~/utils/apiClient";
+
+const route = useRoute();
+const activeLink = computed(() => route.path);
 
 const logOut = async () => {
   try {
@@ -48,3 +48,13 @@ const logOut = async () => {
   }
 };
 </script>
+<style scoped>
+ul li {
+  color: var(--color-text);
+  cursor: pointer;
+}
+
+ul li.active {
+  font-weight: bold;
+}
+</style>
