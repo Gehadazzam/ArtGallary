@@ -3,4 +3,5 @@
 <template>
   <TheHero />
   <TheSlider />
+  <TheStory />
 </template>
