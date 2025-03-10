@@ -74,8 +74,8 @@ const {
 
     &:focus {
       outline: none;
-      border-color: var(--color-focus);
-      box-shadow: 0 0 0 1px var(--color-focus);
+      border-color: var(--color-button);
+      box-shadow: 0 0 0 1px var(--color-button);
     }
   }
 
