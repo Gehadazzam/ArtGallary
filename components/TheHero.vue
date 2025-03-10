@@ -58,7 +58,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <section class="flex flex-col items-center justify-center h-screen space-y-5">
+  <section class="flex flex-col items-center justify-center pt-16 space-y-5">
     <h1 class="text-text-pink font-bold text-7xl">Maroba Gallery</h1>
     <h4 class="text-text-gray text-3xl font-light">
       Made especially for your eyes!
