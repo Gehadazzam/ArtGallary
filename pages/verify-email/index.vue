@@ -35,24 +35,18 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="bg-background m-4 md:m-8 lg:mx-24 lg:mt-12 rounded-4xl">
-    <div class="bg-[url('~/public/images/mainbg.svg')] bg-cover h-full px-4">
-      <div v-if="error" class="text-center">
-        <p class="text-lg text-red-600 font-bold mb-4">
-          {{ error }}
-        </p>
-        <TheButton @click="redirect"> Go to Home</TheButton>
-      </div>
-      <div v-else>
-        <NuxtImg src="~/public/images/verify.svg" alt="Verify Email" />
-        <h1 class="text-3xl text-text text-center font-bold">
-          Congratulations!
-        </h1>
-        <p class="text-lg text-text text-center">
-          Your email has been verified successfully. Please wait while we
-          redirect you to the main page.
-        </p>
-      </div>
-    </div>
+  <div v-if="error" class="text-center">
+    <p class="text-lg text-red-600 font-bold mb-4">
+      {{ error }}
+    </p>
+    <TheButton @click="redirect"> Go to Home</TheButton>
+  </div>
+  <div v-else>
+    <NuxtImg src="~/public/images/verify.svg" alt="Verify Email" />
+    <h1 class="text-3xl text-text text-center font-bold">Congratulations!</h1>
+    <p class="text-lg text-text text-center">
+      Your email has been verified successfully. Please wait while we redirect
+      you to the main page.
+    </p>
   </div>
 </template>
