@@ -4,4 +4,5 @@
   <TheHero />
   <TheSlider />
   <TheStory />
+  <TheCategorie />
 </template>
